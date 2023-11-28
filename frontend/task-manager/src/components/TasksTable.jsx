@@ -17,33 +17,29 @@ const TasksTable = ({tasks}) => {
     return (
         <table className="table text-white mb-0">
             <thead>
-            <tr>
-                <th scope="col">Task</th>
-                <th scope="col">Description</th>
-                <th scope="col">Priority</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+            <tr >
+                <th scope="col" style={{backgroundColor: "antiquewhite"}}>Task</th>
+                <th scope="col" style={{backgroundColor: "antiquewhite"}}>Description</th>
+                <th scope="col" style={{backgroundColor: "antiquewhite"}}>Priority</th>
+                <th scope="col" style={{backgroundColor: "antiquewhite"}}>Due Date</th>
+                <th scope="col" style={{backgroundColor: "antiquewhite"}}>Status</th>
+                <th scope="col" style={{backgroundColor: "antiquewhite"}}>Actions</th>
             </tr>
             </thead>
             <tbody>
             {
                 tasks?.map((task) => (
-                    <tr className="fw-normal">
-                        <td className="align-middle">{task.title}</td>
-                        <td className="align-middle">{task.description}</td>
-                        <td className="align-middle">
-                            <h6 className="mb-0">
-                                                     <span className={`badge ${getPriorityColor(task.priority)}`}>
-                                                              {task.priority}
-                                                     </span>
-                            </h6>
+                    <tr className="fw-normal" >
+                        <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>{task.title}</td>
+                        <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>{task.description}</td>
+                        <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>
+                            <h6 className={`badge ${getPriorityColor(task.priority)}`}>{task.priority}</h6>
                         </td>
-                        <td className="align-middle">{task.dueDate}</td>
-                        <td className="align-middle">{task.completed ? "DONE" : "IN PROGRES"}</td>
-                        <td className="align-middle">
-                            <a className="text-success me-4 fs-4"><MdDone/></a>
-                            <a className="fs-5" style={{color: "red"}}><MdOutlineDeleteOutline/></a>
+                        <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>{task.dueDate}</td>
+                        <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>{task.completed ? "DONE" : "IN PROGRES"}</td>
+                        <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>
+                            <a className="text-success me-4 fs-4" data-mdb-toggle="tooltip" title="Done" ><MdDone/></a>
+                            <a className="fs-5" data-mdb-toggle="tooltip" title="Remove" style={{color: "red"}}><MdOutlineDeleteOutline/></a>
                         </td>
                     </tr>
                 ))
