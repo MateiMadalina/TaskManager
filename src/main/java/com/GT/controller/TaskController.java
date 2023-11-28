@@ -16,6 +16,7 @@ public class TaskController {
     }
 
     @GetMapping
+    @CrossOrigin
     public List<Task> getAllTasks(){
         return taskService.getAllTasks();
     }

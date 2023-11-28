@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {getTasks} from "../API-service/CRUDTask";
 import {MdDone} from "react-icons/md";
 import {MdOutlineDeleteOutline} from "react-icons/md";
+import TasksTable from "../components/TasksTable";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -14,18 +15,7 @@ const Tasks = () => {
 
     console.log(tasks);
 
-    function getPriorityColor(priority) {
-        switch (priority) {
-            case 'High':
-                return 'bg-danger'; // culoare roșie pentru High
-            case 'Medium':
-                return 'bg-warning'; // culoare galbenă pentru Medium
-            case 'Low':
-                return 'bg-success'; // culoare verde pentru Low
-            default:
-                return 'bg-primary'; // culoare implicită, poți ajusta la nevoie
-        }
-    }
+
 
     return (
         <section className="mt-5">
@@ -57,42 +47,7 @@ const Tasks = () => {
                             </div>
 
                             <hr className="my-4"/>
-
-                            <table className="table text-white mb-0">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Task</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Priority</th>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    tasks?.map((task) => (
-                                        <tr className="fw-normal">
-                                            <td className="align-middle">{task.title}</td>
-                                            <td className="align-middle">{task.description}</td>
-                                            <td className="align-middle">
-                                                <h6 className="mb-0">
-                                                     <span className={`badge ${getPriorityColor(task.priority)}`}>
-                                                              {task.priority}
-                                                     </span>
-                                                </h6>
-                                            </td>
-                                            <td className="align-middle">{task.dueDate}</td>
-                                            <td className="align-middle">{task.completed ? "DONE" : "IN PROGRES"}</td>
-                                            <td className="align-middle">
-                                                <a className="text-success me-4 fs-4"><MdDone/></a>
-                                                <a className="fs-5" style={{color: "red"}}><MdOutlineDeleteOutline/></a>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                                </tbody>
-                            </table>
+                            <TasksTable tasks={tasks}/>
                         </div>
                     </div>
                 </div>
