@@ -12,7 +12,7 @@ const RootLayout = () => {
                     <div className="collapse navbar-collapse" id="navbarText">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink to="/tasks" className="nav-link text-black">Tasks</NavLink>
+                                <NavLink to="/tasks" className="nav-link text-black me-2">Tasks</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/login" className="btn btn-outline-dark me-2">Log in</NavLink>
