@@ -5,6 +5,8 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import RootLayout from "./layout/RootLayout";
 import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
+import LogIn from "./pages/LogIn";
+import SignUp from "./pages/SignUp";
 
 
 const router = createBrowserRouter(
@@ -12,6 +14,8 @@ const router = createBrowserRouter(
         <Route path="/" element={<RootLayout/>}>
           <Route index element={<Home/>}/>
           <Route path="/tasks" element={<Tasks/>}/>
+          <Route path="/login" element={<LogIn/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
         </Route>
     )
 )
