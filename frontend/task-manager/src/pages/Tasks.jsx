@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {addTask, deleteTask, getTasks} from "../API-service/CRUDTask";
+import {addTask, deleteTask, getTasks, markTaskAsDone} from "../API-service/CRUDTask";
 import TasksTable from "../components/TasksTable";
 import FormAddNewTask from "../components/FormAddNewTask";
 
@@ -39,6 +39,19 @@ const Tasks = () => {
         }
     };
 
+    const taskDone = async (taskId) => {
+        try {
+            await markTaskAsDone(taskId);
+            setTasks((prevTasks) =>
+                prevTasks.map((task) =>
+                    task.id === taskId ? { ...task, completed: true } : task
+                )
+            );
+        } catch (error) {
+            console.error("Error marking task as done:", error);
+        }
+    };
+
     return (
         <div className="d-flex justify-content-center align-items-center">
             <div className="card row col-8 mt-5 rounded-4" id="task">
@@ -47,7 +60,7 @@ const Tasks = () => {
                     <h4 className="text-center mb-4 pb-3">To-Do List</h4>
                     <FormAddNewTask onSave={onSave}/>
                     <hr className="my-4"/>
-                    <TasksTable tasks={tasks} onDelete={onDelete}/>
+                    <TasksTable tasks={tasks} onDelete={onDelete} taskDone={taskDone}/>
                 </div>
             </div>
         </div>

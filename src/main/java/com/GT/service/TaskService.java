@@ -2,6 +2,7 @@ package com.GT.service;
 
 import com.GT.model.Task;
 import com.GT.repositories.TaskRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,13 @@ public class TaskService {
     }
 
     public void deleteTask(Long taskId){
-        System.out.println("Deleting task with ID: " + taskId);
         taskRepository.deleteById(taskId);
+    }
+    public void markTaskAsDone(Long taskId){
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new EntityNotFoundException("Task not found with id: " + taskId));
+
+        task.setCompleted(true);
+        taskRepository.save(task);
     }
 }

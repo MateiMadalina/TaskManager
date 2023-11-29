@@ -32,4 +32,10 @@ public class TaskController {
     public void deleteTask(@PathVariable Long taskId){
         taskService.deleteTask(taskId);
     }
+
+    @PatchMapping("/{taskId}/done")
+    @CrossOrigin
+    public void markTaskAsDone(@PathVariable Long taskId){
+        taskService.markTaskAsDone(taskId);
+    }
 }

@@ -27,3 +27,17 @@ export const deleteTask = async (taskId) => {
         throw error;
     }
 };
+
+export const markTaskAsDone = async (taskId) => {
+    try{
+        const response = await fetch(`http://localhost:8080/task-manager/api/tasks/${taskId}/done`,{
+            method:"PATCH",
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    }catch (error){
+        console.error("Error marking task as done: ",error);
+        throw error;
+    }
+}
