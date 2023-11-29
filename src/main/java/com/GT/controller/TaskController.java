@@ -26,4 +26,10 @@ public class TaskController {
     public void addTask(@RequestBody Task task){
         taskService.addTask(task);
     }
+
+    @DeleteMapping("/{taskId}")
+    @CrossOrigin
+    public void deleteTask(@PathVariable Long taskId){
+        taskService.deleteTask(taskId);
+    }
 }

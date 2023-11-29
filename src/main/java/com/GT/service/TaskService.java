@@ -22,5 +22,8 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-
+    public void deleteTask(Long taskId){
+        System.out.println("Deleting task with ID: " + taskId);
+        taskRepository.deleteById(taskId);
+    }
 }

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {addTask, getTasks} from "../API-service/CRUDTask";
+import {addTask, deleteTask, getTasks} from "../API-service/CRUDTask";
 import TasksTable from "../components/TasksTable";
 import FormAddNewTask from "../components/FormAddNewTask";
 
@@ -30,6 +30,15 @@ const Tasks = () => {
         }
     }
 
+    const onDelete = async (taskId) => {
+        try {
+            await deleteTask(taskId);
+            setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+        } catch (error) {
+            console.error("Error deleting task:", error);
+        }
+    };
+
     return (
         <div className="d-flex justify-content-center align-items-center">
             <div className="card row col-8 mt-5 rounded-4" id="task">
@@ -38,7 +47,7 @@ const Tasks = () => {
                     <h4 className="text-center mb-4 pb-3">To-Do List</h4>
                     <FormAddNewTask onSave={onSave}/>
                     <hr className="my-4"/>
-                    <TasksTable tasks={tasks}/>
+                    <TasksTable tasks={tasks} onDelete={onDelete}/>
                 </div>
             </div>
         </div>

@@ -16,3 +16,14 @@ export const addTask = async (newTask) => {
         throw error;
     }
 };
+
+export const deleteTask = async (taskId) => {
+    try {
+        const response = await fetch(`http://localhost:8080/task-manager/api/tasks/${taskId}`, {
+            method: "DELETE",
+        });
+    } catch (error) {
+        console.error("Error deleting task:", error);
+        throw error;
+    }
+};

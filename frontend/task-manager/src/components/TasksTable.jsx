@@ -1,6 +1,6 @@
 import {MdDone, MdOutlineDeleteOutline} from "react-icons/md";
 
-const TasksTable = ({tasks}) => {
+const TasksTable = ({tasks, onDelete}) => {
     const getPriorityColor = (priority) => {
         switch (priority) {
             case 'High':
@@ -39,7 +39,7 @@ const TasksTable = ({tasks}) => {
                         <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>{task.completed ? "DONE" : "IN PROGRES"}</td>
                         <td className="align-middle" style={{backgroundColor: "antiquewhite"}}>
                             <a className="text-success me-4 fs-4" data-mdb-toggle="tooltip" title="Done" ><MdDone/></a>
-                            <a className="fs-5" data-mdb-toggle="tooltip" title="Remove" style={{color: "red"}}><MdOutlineDeleteOutline/></a>
+                            <a className="fs-5" data-mdb-toggle="tooltip" title="Remove" onClick={() => onDelete(task.id)} style={{color: "red"}} ><MdOutlineDeleteOutline/></a>
                         </td>
                     </tr>
                 ))
