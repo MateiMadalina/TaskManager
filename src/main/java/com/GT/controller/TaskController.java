@@ -22,6 +22,7 @@ public class TaskController {
     }
 
     @PostMapping
+    @CrossOrigin
     public void addTask(@RequestBody Task task){
         taskService.addTask(task);
     }
