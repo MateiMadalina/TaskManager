@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
+import './styles/Home.css';
 
 
 const router = createBrowserRouter(

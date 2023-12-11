@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.home-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    background: url('https://images.unsplash.com/photo-1642543492457-39a2ce63bb59?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+    overflow: hidden;
+}
+
+.home-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+}
+
+.home-text {
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1;
+
+}
+
+h1, h5 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+h1{
+    font-size: 3em;
+}
+
+.explore-button {
+    background-color: saddlebrown; /* Schimbă culoarea de fundal a butonului */
+    color: floralwhite; /* Schimbă culoarea textului butonului */
+    padding: 10px 20px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: antiquewhite; /* Schimbă culoarea de fundal a butonului la hover */
+    color: saddlebrown; /* Schimbă culoarea textului butonului la hover */
+}
+
