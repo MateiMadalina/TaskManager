@@ -24,4 +24,8 @@ public class Task {
     private LocalDate dueDate;
     private boolean completed;
     private TaskPriority priority;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
