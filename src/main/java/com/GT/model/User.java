@@ -1,6 +1,7 @@
 package com.GT.model;
 
 import com.GT.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<Task> tasks;
 

@@ -2,14 +2,23 @@ import {useEffect, useState} from "react";
 import {addTask, deleteTask, getTasks, markTaskAsDone} from "../API-service/CRUDTask";
 import TasksTable from "../components/TasksTable";
 import FormAddNewTask from "../components/FormAddNewTask";
+import {useAuthHeader, useIsAuthenticated} from "react-auth-kit";
+import {useNavigate} from "react-router-dom";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
+    const isAuth = useIsAuthenticated();
+    const token = useAuthHeader();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        getTasks().then((tasks) => {
-            setTasks(tasks);
-        })
+        if (!isAuth()) {
+            navigate("/login");
+        } else {
+            getTasks(token()).then((tasks) => {
+                setTasks(tasks);
+            })
+        }
     }, []);
 
     const onSave = async (e) => {
@@ -22,9 +31,11 @@ const Tasks = () => {
             priority: e.target[3].value
         }
         try {
-            await addTask(newTask);
-            setTasks((prevTasks) => [...prevTasks, newTask]);
-            e.target.reset();
+            await addTask(newTask, token());
+            window.location.reload();
+            // setTasks((prevTasks) => [...prevTasks, newTask]);
+            //e.target.reset();
+
         } catch (error) {
             console.error("Error adding task:", error);
         }
@@ -32,7 +43,7 @@ const Tasks = () => {
 
     const onDelete = async (taskId) => {
         try {
-            await deleteTask(taskId);
+            await deleteTask(taskId, token());
             setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
         } catch (error) {
             console.error("Error deleting task:", error);
@@ -41,10 +52,10 @@ const Tasks = () => {
 
     const taskDone = async (taskId) => {
         try {
-            await markTaskAsDone(taskId);
+            await markTaskAsDone(taskId, token());
             setTasks((prevTasks) =>
                 prevTasks.map((task) =>
-                    task.id === taskId ? { ...task, completed: true } : task
+                    task.id === taskId ? {...task, completed: true} : task
                 )
             );
         } catch (error) {

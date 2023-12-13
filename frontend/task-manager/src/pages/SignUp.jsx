@@ -1,8 +1,13 @@
 import FormInput from "../components/FormInput";
 import {useState} from "react";
+import {onSubmit} from "../API-service/AuthenticateService";
+import {useNavigate} from "react-router-dom";
+import {useSignIn} from "react-auth-kit";
 
 const SignUp = () => {
     const [error, setError] = useState("");
+    const signIn = useSignIn();
+    const navigate = useNavigate();
     const onSave = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -12,6 +17,7 @@ const SignUp = () => {
             email: formData.get("email"),
             password: formData.get("password"),
         };
+        onSubmit("auth/signup",setError,authenticateData,navigate,signIn)
     }
     return(
         <form onSubmit={onSave} className="d-flex justify-content-center " style={{paddingTop: "3em"}}>

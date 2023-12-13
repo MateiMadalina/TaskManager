@@ -1,8 +1,20 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import FormInput from "../components/FormInput";
+import {onSubmit} from "../API-service/AuthenticateService";
+import {useIsAuthenticated, useSignIn} from "react-auth-kit";
+import {useNavigate} from "react-router-dom";
 
 const LogIn = () => {
     const [error, setError] = useState("");
+    const signIn = useSignIn();
+    const isAuth = useIsAuthenticated();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(isAuth()){
+            navigate("/tasks");
+        }
+    },[])
 
     const onSave = (e) => {
         e.preventDefault();
@@ -11,6 +23,7 @@ const LogIn = () => {
             email: formData.get("email"),
             password: formData.get("password"),
         };
+        onSubmit("auth/login", setError, authenticateData, navigate, signIn);
     }
     return(
         <form onSubmit={onSave} className="d-flex justify-content-center mt-5" style={{paddingTop: "5em"}}>

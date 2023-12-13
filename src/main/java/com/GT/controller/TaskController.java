@@ -4,9 +4,11 @@ import com.GT.model.Task;
 import com.GT.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/task-manager/api/tasks")
 public class TaskController {
     private TaskService taskService;
@@ -16,25 +18,22 @@ public class TaskController {
     }
 
     @GetMapping
-    @CrossOrigin
-    public List<Task> getAllTasks(){
-        return taskService.getAllTasks();
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Task> getAllTasks(Principal connectedUser){
+        return taskService.getAllTasks(connectedUser);
     }
 
     @PostMapping
-    @CrossOrigin
-    public void addTask(@RequestBody Task task){
-        taskService.addTask(task);
+    public void addTask(@RequestBody Task task,Principal connectedUser){
+        taskService.addTask(task,connectedUser);
     }
 
     @DeleteMapping("/{taskId}")
-    @CrossOrigin
     public void deleteTask(@PathVariable Long taskId){
         taskService.deleteTask(taskId);
     }
 
     @PatchMapping("/{taskId}/done")
-    @CrossOrigin
     public void markTaskAsDone(@PathVariable Long taskId){
         taskService.markTaskAsDone(taskId);
     }
