@@ -32,8 +32,7 @@ const RootLayout = () => {
                                     <li className="nav-item">
                                         <button data-bs-toggle="modal"
                                                 data-bs-target="#logout"
-                                                className="nav-link"><RiLogoutBoxRFill
-                                            style={{fontSize: "1.5em",color:"black"}}/></button>
+                                                className="nav-link text-black fw-bold">LogOut</button>
                                     </li>
                                 </>
                                 :
