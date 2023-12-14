@@ -20,7 +20,7 @@ const SignUp = () => {
         onSubmit("auth/signup",setError,authenticateData,navigate,signIn)
     }
     return(
-        <form onSubmit={onSave} className="d-flex justify-content-center " style={{paddingTop: "3em"}}>
+        <form onSubmit={onSave} className="d-flex justify-content-center mt-4">
             <div className="col-10 col-md-8 col-lg-6 col-xl-4 card rounded-4" style={{borderColor:"burlywood"}}>
                 <div className="card-body p-lg-5 p-xl-5 p-md-5 text-center">
                     <h3 className="mb-5" style={{color:"saddlebrown"}}>Sign up</h3>

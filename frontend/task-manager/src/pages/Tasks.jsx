@@ -65,7 +65,7 @@ const Tasks = () => {
 
     return (
         <div className="d-flex justify-content-center align-items-center">
-            <div className="card row col-8 mt-5 rounded-4" id="task">
+            <div className="card row col-8 mt-4 rounded-4" id="task">
                 <div className="card-body py-4 px-4 px-md-5">
                     <h1 className="text-center mt-3">Your Roadmap to Success</h1>
                     <h4 className="text-center mb-4 pb-3">To-Do List</h4>
