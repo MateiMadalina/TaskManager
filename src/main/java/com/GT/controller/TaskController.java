@@ -8,7 +8,6 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/task-manager/api/tasks")
 public class TaskController {
     private TaskService taskService;
@@ -18,7 +17,6 @@ public class TaskController {
     }
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:3000")
     public List<Task> getAllTasks(Principal connectedUser){
         return taskService.getAllTasks(connectedUser);
     }

@@ -1,4 +1,5 @@
 export const getTasks = async (token) => {
+    console.log(token);
     return fetch("http://localhost:8080/task-manager/api/tasks",
         {
             method: "GET",
